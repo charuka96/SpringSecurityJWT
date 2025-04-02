@@ -22,12 +22,19 @@ public class JWTService {
     }
     public String getJWTToken(){
 
-        return Jwts.builder()
-                .subject("amila")
-                .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis()+1000*60*15))
-                .signWith(secretKey)
-                .compact();
+        try {
+
+            return Jwts.builder()
+                    .subject("amila")
+                    .issuedAt(new Date(System.currentTimeMillis()))
+                    .expiration(new Date(System.currentTimeMillis()+1000*60*15))
+                    .signWith(secretKey)
+                    .compact();
+        }catch ( Exception e){
+
+return "Invalide token";
+        }
+
     }
 
     public String getUserName(String token){
